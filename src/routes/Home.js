@@ -1,8 +1,15 @@
 import React from "react";
 import axios from "axios";
 import styled from "styled-components";
+import Post from "../components/Post";
 
-const Container = styled.div``;
+const Container = styled.div`
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 class Home extends React.Component {
   state = {
@@ -28,7 +35,12 @@ class Home extends React.Component {
         ) : (
           <>
             {posts.map((post) => (
-              <div>{post.title}</div>
+              <Post
+                key={post.id}
+                id={post.id}
+                title={post.title}
+                content={post.content}
+              />
             ))}
           </>
         )}
