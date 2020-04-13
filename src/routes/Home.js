@@ -2,8 +2,8 @@ import React from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Post from "../components/Post";
-import Form from "../components/Form";
 import Header from "../components/Header";
+import PostContainer from "../containers/PostContainer";
 
 const Container = styled.div`
   margin-top: 50px;
@@ -33,21 +33,7 @@ class Home extends React.Component {
     return (
       <Container>
         <Header />
-        <Form />
-        {isLoading ? (
-          <>loading</>
-        ) : (
-          <>
-            {posts.map((post) => (
-              <Post
-                key={post.id}
-                id={post.id}
-                title={post.title}
-                content={post.content}
-              />
-            ))}
-          </>
-        )}
+        <PostContainer />
       </Container>
     );
   }

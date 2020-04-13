@@ -1,4 +1,4 @@
-import { ping } from "./ping";
+import { post } from "./post";
 import { combineReducers } from "redux";
 
-export const rootReducers = combineReducers({ ping });
+export const rootReducers = combineReducers({ post });
