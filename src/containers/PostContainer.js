@@ -4,13 +4,23 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import * as postActions from "../store/modules/post";
 import Form from "../components/Form";
-import Post from "../components/Post";
 
-const Cards = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 0.7fr);
-  flex-wrap: wrap;
-  justify-items: center;
+const List = styled.div`
+  margin-top: 30px;
+  padding: 10px 0;
+  border-radius: 20px;
+  background-color: #fff5eb;
+`;
+
+const Txt = styled.div`
+  margin-right: 10px;
+  font-family: "Song Myung", serif;
+  font-size: 20px;
+  margin: 5px 0;
+`;
+
+const Count = styled.span`
+  margin-right: 15px;
 `;
 
 export class PostContainer extends Component {
@@ -49,11 +59,18 @@ export class PostContainer extends Component {
           onChangeInput={handleChange}
           onAdd={addPost}
         />
-        <Cards>
-          {!isLoading &&
-            posts &&
-            posts.map((post) => <Post key={post.id} text={post.text} />)}
-        </Cards>
+        <List>
+          <ul>
+            {!isLoading &&
+              posts &&
+              posts.map((post) => (
+                <Txt key={post.id}>
+                  <Count>•</Count>
+                  {post.text}
+                </Txt>
+              ))}
+          </ul>
+        </List>
       </div>
     );
   }

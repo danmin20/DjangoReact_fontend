@@ -1,16 +1,19 @@
 import React from "react";
-import axios from "axios";
 import styled from "styled-components";
-import Post from "../components/Post";
 import Header from "../components/Header";
 import PostContainer from "../containers/PostContainer";
 
 const Container = styled.div`
-  margin-top: 50px;
+  position: absolute;
+  background-color: #403d3b;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
   align-items: center;
+  flex-direction: column;
 `;
 
 class Home extends React.Component {
