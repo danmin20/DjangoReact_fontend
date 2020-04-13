@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Post from "../components/Post";
+import Form from "../components/Form";
+import Header from "../components/Header";
 
 const Container = styled.div`
   margin-top: 50px;
@@ -30,6 +32,8 @@ class Home extends React.Component {
 
     return (
       <Container>
+        <Header />
+        <Form />
         {isLoading ? (
           <>loading</>
         ) : (
