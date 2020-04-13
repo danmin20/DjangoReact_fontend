@@ -1,10 +1,14 @@
 import React from "react";
 
-export default ({ postInput, onChangeInput }) => {
+export default ({ postInput, onChangeInput, onAdd }) => {
   const handleChange = (e) => {
     const { value } = e.target;
     onChangeInput({ value });
-    console.log(e);
+  };
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      onAdd();
+    }
   };
   return (
     <div>
@@ -13,6 +17,7 @@ export default ({ postInput, onChangeInput }) => {
         name="post"
         value={postInput}
         onChange={handleChange}
+        onKeyPress={handleKeyPress}
       />
     </div>
   );

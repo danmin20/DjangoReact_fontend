@@ -9,13 +9,22 @@ export class PostContainer extends Component {
     changePostInput({ value });
   };
 
+  addPost = () => {
+    const { addPost } = this.props;
+    addPost();
+  };
+
   render() {
     const { postInput } = this.props;
-    const { handleChange } = this;
+    const { handleChange, addPost } = this;
     console.log(postInput);
     return (
       <div>
-        <Form postInput={postInput} onChangeInput={handleChange} />
+        <Form
+          postInput={postInput}
+          onChangeInput={handleChange}
+          onAdd={addPost}
+        />
       </div>
     );
   }
@@ -23,12 +32,16 @@ export class PostContainer extends Component {
 
 const mapStateToProps = (state) => ({
   postInput: state.post.postInput,
+  posts: state.post.post,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changePostInput: ({ value }) => {
       dispatch(postActions.changePostInput({ value }));
+    },
+    addPost: () => {
+      dispatch(postActions.addPost());
     },
   };
 };
