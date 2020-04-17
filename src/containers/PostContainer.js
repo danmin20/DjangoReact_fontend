@@ -48,16 +48,15 @@ export class PostContainer extends Component {
 
   render() {
     const { isLoading, posts } = this.state;
-    console.log(posts);
-    const { postInput } = this.props;
+    const { postInput, error } = this.props;
     const { handleChange, addPost } = this;
-    console.log(postInput);
     return (
       <div>
         <Form
           postInput={postInput}
           onChangeInput={handleChange}
           onAdd={addPost}
+          error={error}
         />
         <List>
           <ul>
@@ -79,6 +78,7 @@ export class PostContainer extends Component {
 const mapStateToProps = (state) => ({
   postInput: state.post.postInput,
   posts: state.post.post,
+  error: state.post.error
 });
 
 const mapDispatchToProps = (dispatch) => {

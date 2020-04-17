@@ -33,25 +33,34 @@ const addPostEpic = (action$, state$) => {
     ofType(ADD_POST),
     withLatestFrom(state$),
     mergeMap(([action, state]) => {
-      return ajax.post(`http://localhost:8000/api/posts/`, { text: state.post.postInput }).pipe(
-        map((response) => {
-          const post = response.response;
-          return addPostSuccess(post);
-        }),
-        catchError((error) =>
-          of({
-            type: ADD_POST_FAILURE,
-            payload: error,
-            error: true,
-          })
-        )
-      );
+      return ajax
+        .post(`http://localhost:8000/api/posts/`, {
+          text: state.post.postInput,
+        })
+        .pipe(
+          map((response) => {
+            const post = response.response;
+            return addPostSuccess(post);
+          }),
+          catchError((error) =>
+            of({
+              type: ADD_POST_FAILURE,
+              payload: error,
+              error: true,
+            })
+          )
+        );
     })
   );
 };
 
 const initialState = {
   postInput: "",
+  posts: [],
+  error: {
+    triggered: false,
+    message: "",
+  },
 };
 
 export const post = (state = initialState, action) => {
@@ -66,13 +75,17 @@ export const post = (state = initialState, action) => {
         ...state,
         post: [post].concat(state.post),
         postInput: "",
+        error: {
+          triggered: false,
+          message: "",
+        },
       };
     case ADD_POST_FAILURE:
       return {
         ...state,
         error: {
           triggered: true,
-          message: "ERROR!",
+          message: "내용을 입력해주세요",
         },
       };
     default:
