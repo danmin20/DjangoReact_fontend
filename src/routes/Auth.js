@@ -1,5 +1,11 @@
 import React from "react";
+import { AuthContainer } from "../containers/AuthContainer";
 
-export default () => {
-  return <div>Auth</div>;
+export default ({ match }) => {
+  const { kind } = match.params;
+  return (
+    <>
+      <AuthContainer kind={kind} />
+    </>
+  );
 };
