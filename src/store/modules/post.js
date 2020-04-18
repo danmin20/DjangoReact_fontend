@@ -46,7 +46,6 @@ const addPostEpic = (action$, state$) => {
             of({
               type: ADD_POST_FAILURE,
               payload: error,
-              error: true,
             })
           )
         );
@@ -57,10 +56,6 @@ const addPostEpic = (action$, state$) => {
 const initialState = {
   postInput: "",
   posts: [],
-  error: {
-    triggered: false,
-    message: "",
-  },
 };
 
 export const post = (state = initialState, action) => {

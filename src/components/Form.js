@@ -18,13 +18,7 @@ const Input = styled.input`
   }
 `;
 
-const Err = styled.div`
-  color: #fff5eb;
-  font-family: "Song Myung", serif;
-  margin-left: 10px;
-`;
-
-export default ({ postInput, onChangeInput, onAdd, error }) => {
+export default ({ postInput, onChangeInput, onAdd }) => {
   const handleChange = (e) => {
     const { value } = e.target;
     onChangeInput({ value });
@@ -35,15 +29,12 @@ export default ({ postInput, onChangeInput, onAdd, error }) => {
     }
   };
   return (
-    <>
-      <Err>{error.triggered && <div>{error.message}</div>}</Err>
-      <Input
-        type="text"
-        name="post"
-        value={postInput}
-        onChange={handleChange}
-        onKeyPress={handleKeyPress}
-      />
-    </>
+    <Input
+      type="text"
+      name="post"
+      value={postInput}
+      onChange={handleChange}
+      onKeyPress={handleKeyPress}
+    />
   );
 };
